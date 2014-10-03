@@ -1,4 +1,4 @@
-package de.github.jangalinski.codemodel;
+package com.github.jangalinski.codemodel;
 
 import static com.sun.codemodel.JExpr._this;
 import static com.sun.codemodel.JExpr.lit;
@@ -30,11 +30,11 @@ public class GenerateEnumTest {
     @Test
     public void shouldGenerateEnumWithConstructor() throws Exception {
         JDefinedClass definedClass = codeModel.rootPackage()._class(JMod.PUBLIC, "ReportColumns", ClassType.ENUM);
-        
+
         JFieldVar field1 = definedClass.field(PRIVATE_FINAL, String.class, "column");
         JFieldVar field2 = definedClass.field(PRIVATE_FINAL, Boolean.class, "filterable");
         JFieldVar field3 = definedClass.field(PRIVATE_FINAL, Boolean.class, "includeInHavingClause");
-        
+
         JMethod constructor = definedClass.constructor(JMod.PRIVATE);
         JVar param1 = constructor.param(String.class, "column");
         JVar param2 = constructor.param(Boolean.class, "filterable");
@@ -44,7 +44,7 @@ public class GenerateEnumTest {
         body.assign(_this().ref(field1), param1);
         body.assign(_this().ref(field2), param2);
         body.assign(_this().ref(field3), param3);
-        
+
         JEnumConstant enumMonth = definedClass.enumConstant("MONTH");
         enumMonth.arg(lit("month"));
         enumMonth.arg(lit(true));
